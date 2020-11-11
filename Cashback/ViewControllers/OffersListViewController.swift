@@ -30,9 +30,22 @@ class OffersListViewController: UIViewController {
         title = "Offers"
     }
     
-    func setupCollectionView() {
-        offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+    func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
+        let width = view.bounds.width
+        let padding: CGFloat = 12 //padding on left and right edges
+        let minimumSpacing: CGFloat = 8
+        let availableWidth = width - (padding * 2) - minimumSpacing
+        let itemWidth = availableWidth/2
         
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: 24, right: padding)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 80)
+        
+        return flowLayout
+    }
+    
+    func setupCollectionView() {
+        offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(offersCollectionView)
         offersCollectionView.backgroundColor = .systemPink
         offersCollectionView.register(OffersCollectionViewCell.self, forCellWithReuseIdentifier: OffersCollectionViewCell.reuseIdentifier)
