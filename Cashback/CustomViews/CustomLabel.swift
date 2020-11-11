@@ -7,21 +7,20 @@
 
 import UIKit
 
-class BodyLabel: UILabel {
+class CustomLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configure() {
+    func configureLabel(fontName: String, size: CGFloat, fontColor: UIColor) {
         textAlignment = .left
-        textColor = .systemGray2
-        font = UIFont(name: "AvenirNext-Regular", size: 11)
+        textColor = fontColor
+        font = UIFont(name: fontName, size: size)
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.75
         lineBreakMode = .byWordWrapping

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class ProductTableViewCell: UITableViewCell {
+class ItemImageTableViewCell: UITableViewCell {
     
+    static let reuseIdentifier = "offer_detail_cell"
 
     var productImage = ProductImageView(frame: .zero)
-    var productNameLabel = TitleLabel()
     
     var padding: CGFloat = 8
     
@@ -22,11 +22,10 @@ class ProductTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(productImage)
-        contentView.addSubview(productNameLabel)
+        configure()
     }
     
     func set(offer: Offer) {
-        productNameLabel.text = offer.name
         productImage.downloadImage(from: offer.url ?? "")
     }
     
@@ -36,15 +35,10 @@ class ProductTableViewCell: UITableViewCell {
 
     private func configure() {
         NSLayoutConstraint.activate([
-            productNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            productNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            productNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            productNameLabel.bottomAnchor.constraint(equalTo: productImage.topAnchor, constant: -padding),
-            
-            productImage.topAnchor.constraint(equalTo: productNameLabel.bottomAnchor, constant: padding),
-            productImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            productImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -80),
+            productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            productImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            productImage.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 

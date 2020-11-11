@@ -11,8 +11,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "offersCell"
     
     let productImageView = ProductImageView(frame: .zero)
-    let cashbackAmountLabel = TitleLabel()
-    let nameLabel = BodyLabel()
+    let cashbackAmountLabel = CustomLabel()
+    let nameLabel = CustomLabel()
     
     let padding: CGFloat = 0
     
@@ -35,6 +35,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
         addSubview(productImageView)
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
+        cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: .black)
+        nameLabel.configureLabel(fontName: "AvenirNext-Regular", size: 12, fontColor: .gray)
         
         NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
