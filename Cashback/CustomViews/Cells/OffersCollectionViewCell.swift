@@ -11,8 +11,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier = "offersCell"
     
     let productImageView = ProductImageView(frame: .zero)
-    let cashbackAmountLabel = TitleLabel(textAlignment: .left)
-    let nameLabel = TitleLabel(textAlignment: .center)
+    let cashbackAmountLabel = TitleLabel()
+    let nameLabel = BodyLabel()
     
     let padding: CGFloat = 0
     

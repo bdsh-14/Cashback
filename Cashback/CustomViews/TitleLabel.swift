@@ -18,19 +18,13 @@ class TitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(textAlignment: NSTextAlignment) {
-        super.init(frame: .zero)
-        self.textAlignment = textAlignment
-        configure()
-    }
-    
     private func configure() {
         textColor = .black
+        textAlignment = .left
         font = UIFont(name: "AvenirNext-DemiBold", size: 12)
         adjustsFontSizeToFitWidth = true
         
         // TODO: fix color
-        textColor = .systemGray2
         minimumScaleFactor = 0.75
         translatesAutoresizingMaskIntoConstraints = false
         lineBreakMode = .byWordWrapping
