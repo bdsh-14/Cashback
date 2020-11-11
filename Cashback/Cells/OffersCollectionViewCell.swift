@@ -14,7 +14,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
     let cashbackAmountLabel = TitleLabel(textAlignment: .left)
     let nameLabel = TitleLabel(textAlignment: .center)
     
-    let padding: CGFloat = 8
+    let padding: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +28,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
     func set(offer: Offer) {
         cashbackAmountLabel.text = offer.current_value
         nameLabel.text = offer.name
+        productImageView.downloadImage(from: offer.url ?? "")
     }
     
     private func configure() {
@@ -41,13 +42,12 @@ class OffersCollectionViewCell: UICollectionViewCell {
             productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             productImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6),
             
-            cashbackAmountLabel.leftAnchor.constraint(equalTo: productImageView.leftAnchor, constant: 0),
+            cashbackAmountLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor, constant: 0),
             cashbackAmountLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
-            cashbackAmountLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: padding),
-            cashbackAmountLabel.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
+            cashbackAmountLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 8),
             
             nameLabel.topAnchor.constraint(equalTo: cashbackAmountLabel.bottomAnchor, constant: 3),
-            nameLabel.leftAnchor.constraint(equalTo: cashbackAmountLabel.leftAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: cashbackAmountLabel.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
         ])

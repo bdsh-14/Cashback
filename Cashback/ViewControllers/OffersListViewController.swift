@@ -45,8 +45,11 @@ class OffersListViewController: UIViewController {
         let itemWidth = availableWidth/2
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: 24, right: padding)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 80)
+        
+        // TODO: fix section inset
+        
+        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 24, right: 8)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         
         return flowLayout
     }
@@ -61,6 +64,8 @@ class OffersListViewController: UIViewController {
     func setupDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Offer>(collectionView: offersCollectionView, cellProvider: { (collectionView, indexPath, offer) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
+            cell.layer.borderWidth = 2
+            cell.layer.borderColor = UIColor.systemBlue.cgColor
             cell.set(offer: offer)
             return cell
         })
