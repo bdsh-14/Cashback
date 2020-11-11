@@ -18,6 +18,8 @@
 		B8B9CC4A255C4FF10099EB6B /* PeoductImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B9CC49255C4FF10099EB6B /* PeoductImageView.swift */; };
 		B8B9CC4D255C526B0099EB6B /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B9CC4C255C526B0099EB6B /* TitleLabel.swift */; };
 		B8E4A75E255C7D2B001E705F /* BodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A75D255C7D2B001E705F /* BodyLabel.swift */; };
+		B8E4A763255C88B4001E705F /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A762255C88B4001E705F /* OfferDetailViewController.swift */; };
+		B8E4A766255C8F95001E705F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A765255C8F95001E705F /* ProductTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		B8B9CC49255C4FF10099EB6B /* PeoductImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeoductImageView.swift; sourceTree = "<group>"; };
 		B8B9CC4C255C526B0099EB6B /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
 		B8E4A75D255C7D2B001E705F /* BodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyLabel.swift; sourceTree = "<group>"; };
+		B8E4A762255C88B4001E705F /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
+		B8E4A765255C8F95001E705F /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				B89686A3255B90200073B848 /* OffersListViewController.swift */,
+				B8E4A762255C88B4001E705F /* OfferDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -108,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B9CC45255C4D090099EB6B /* OffersCollectionViewCell.swift */,
-				B8E4A75D255C7D2B001E705F /* BodyLabel.swift */,
+				B8E4A765255C8F95001E705F /* ProductTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				B89686C3255BA9310073B848 /* Cells */,
+				B8E4A75D255C7D2B001E705F /* BodyLabel.swift */,
 				B8B9CC49255C4FF10099EB6B /* PeoductImageView.swift */,
 				B8B9CC4C255C526B0099EB6B /* TitleLabel.swift */,
 			);
@@ -206,6 +212,8 @@
 				B89686A0255B90200073B848 /* AppDelegate.swift in Sources */,
 				B89686A2255B90200073B848 /* SceneDelegate.swift in Sources */,
 				B8B9CC4D255C526B0099EB6B /* TitleLabel.swift in Sources */,
+				B8E4A763255C88B4001E705F /* OfferDetailViewController.swift in Sources */,
+				B8E4A766255C8F95001E705F /* ProductTableViewCell.swift in Sources */,
 				B8B9CC4A255C4FF10099EB6B /* PeoductImageView.swift in Sources */,
 				B8B9CC46255C4D090099EB6B /* OffersCollectionViewCell.swift in Sources */,
 			);

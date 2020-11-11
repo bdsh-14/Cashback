@@ -18,6 +18,7 @@ class OffersListViewController: UIViewController {
     
     let offers = Offer.offersFromJson()
     var searchedOffers: [Offer] = []
+    var isSearching: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class OffersListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateData(with: offers)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -60,6 +62,7 @@ class OffersListViewController: UIViewController {
         offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(offersCollectionView)
         offersCollectionView.backgroundColor = .systemBackground
+        offersCollectionView.delegate = self
         offersCollectionView.register(OffersCollectionViewCell.self, forCellWithReuseIdentifier: OffersCollectionViewCell.reuseIdentifier)
     }
     
@@ -80,6 +83,7 @@ class OffersListViewController: UIViewController {
         DispatchQueue.main.async {
             self.dataSource.apply(snapShot, animatingDifferences: true, completion: nil)
         }
+        isSearching = false
     }
     
     func setupSearchController() {
@@ -92,15 +96,28 @@ class OffersListViewController: UIViewController {
     }
 }
 
+
+extension OffersListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let offersList = isSearching ? searchedOffers : offers
+        let selectedOffer = offersList[indexPath.item]
+        let vc = OfferDetailViewController()
+        vc.offerDetail = selectedOffer
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
 extension OffersListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
+        isSearching = true
         searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
         updateData(with: searchedOffers)
         // TODO: if no search results are found, handle it somehow (maybe empty state)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
         updateData(with: offers)
     }
     
