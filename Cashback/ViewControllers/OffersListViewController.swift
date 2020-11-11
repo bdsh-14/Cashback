@@ -85,20 +85,26 @@ class OffersListViewController: UIViewController {
     func setupSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search items"
         searchController.obscuresBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
     }
 }
 
-extension OffersListViewController: UISearchResultsUpdating {
+extension OffersListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
         searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
         updateData(with: searchedOffers)
+        // TODO: if no search results are found, handle it somehow (maybe empty state)
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        updateData(with: offers)
+    }
     
+    //TODO: fix cross on search bar
 }
 
 
