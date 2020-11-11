@@ -11,7 +11,7 @@ struct Offers: Codable {
     let offers: [Offer] = []
 }
 
-struct Offer: Codable {
+struct Offer: Codable, Hashable {
     let id: String
     let url: String?
     let name: String

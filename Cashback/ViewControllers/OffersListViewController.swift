@@ -9,7 +9,12 @@ import UIKit
 
 class OffersListViewController: UIViewController {
     
+    enum Section {
+        case main
+    }
+    
     var offersCollectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Offer>!
     
     let offers = Offer.offersFromJson()
 
@@ -17,6 +22,8 @@ class OffersListViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupCollectionView()
+        setupDataSource()
+        updateData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,8 +54,27 @@ class OffersListViewController: UIViewController {
     func setupCollectionView() {
         offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(offersCollectionView)
-        offersCollectionView.backgroundColor = .systemPink
+        offersCollectionView.backgroundColor = .systemBackground
         offersCollectionView.register(OffersCollectionViewCell.self, forCellWithReuseIdentifier: OffersCollectionViewCell.reuseIdentifier)
     }
+    
+    func setupDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Offer>(collectionView: offersCollectionView, cellProvider: { (collectionView, indexPath, offer) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
+            cell.set(offer: offer)
+            return cell
+        })
+    }
+    
+    func updateData() {
+        var snapShot = NSDiffableDataSourceSnapshot<Section, Offer>()
+        snapShot.appendSections([.main])
+        snapShot.appendItems(offers)
+        DispatchQueue.main.async {
+            self.dataSource.apply(snapShot, animatingDifferences: true, completion: nil)
+        }
+    }
 }
+
+
 
