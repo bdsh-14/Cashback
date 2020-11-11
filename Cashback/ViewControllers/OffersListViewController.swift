@@ -17,13 +17,15 @@ class OffersListViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, Offer>!
     
     let offers = Offer.offersFromJson()
+    var searchedOffers: [Offer] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         setupCollectionView()
         setupDataSource()
-        updateData()
+        updateData(with: offers)
+        setupSearchController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +73,7 @@ class OffersListViewController: UIViewController {
         })
     }
     
-    func updateData() {
+    func updateData(with offers: [Offer]) {
         var snapShot = NSDiffableDataSourceSnapshot<Section, Offer>()
         snapShot.appendSections([.main])
         snapShot.appendItems(offers)
@@ -79,6 +81,24 @@ class OffersListViewController: UIViewController {
             self.dataSource.apply(snapShot, animatingDifferences: true, completion: nil)
         }
     }
+    
+    func setupSearchController() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Search items"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+}
+
+extension OffersListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
+        searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
+        updateData(with: searchedOffers)
+    }
+    
+    
 }
 
 

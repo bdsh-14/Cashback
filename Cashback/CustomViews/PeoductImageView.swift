@@ -53,5 +53,4 @@ class ProductImageView: UIImageView {
         }
         task.resume()
     }
-    
 }
