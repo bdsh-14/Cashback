@@ -14,40 +14,72 @@
             filePath = "Cashback/ViewControllers/OfferDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "favoritesButtonTapped(sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5BA8EE53-E31D-41C5-AB14-A45811B45BEF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cashback/ViewControllers/OfferDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cashback/Managers/PersistenceManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "updateWith(favorite:actionType:completed:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F34041EA-DEBF-4667-945A-C69BE09D1BD8 - cd38f6131ffdfae0"
+                  uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0 - 1b8c9fbaebae48f5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Cashback.OfferDetailViewController.favoritesButtonTapped(sender: __C.UIButton) -&gt; ()"
+                  symbolName = "static Cashback.PersistenceManager.updateWith(favorite: Cashback.Offer, actionType: Cashback.PersistenceActionType, completed: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Cashback"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/ViewControllers/OfferDetailViewController.swift"
+                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/Managers/PersistenceManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "63"
-                  endingLineNumber = "63"
-                  offsetFromSymbolStart = "1055">
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "164">
                </Location>
                <Location
-                  uuid = "F34041EA-DEBF-4667-945A-C69BE09D1BD8 - fa657c6b7e711493"
+                  uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0 - ca522c5f1074d323"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Cashback.OfferDetailViewController.favoritesButtonTapped(sender: __C.UIButton) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Cashback.Offer&gt;, Swift.Error&gt;) -&gt; () in static Cashback.PersistenceManager.updateWith(favorite: Cashback.Offer, actionType: Cashback.PersistenceActionType, completed: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Cashback"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/ViewControllers/OfferDetailViewController.swift"
+                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/Managers/PersistenceManager.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "64"
-                  endingLineNumber = "64"
-                  offsetFromSymbolStart = "70">
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "460">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,7 +87,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "50797720-B20B-4812-9A37-3194047C19CC"
+            uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -68,7 +100,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "50797720-B20B-4812-9A37-3194047C19CC - 82f99f4769591034"
+                  uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF - 82f99f4769591034"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -83,7 +115,7 @@
                   offsetFromSymbolStart = "695">
                </Location>
                <Location
-                  uuid = "50797720-B20B-4812-9A37-3194047C19CC - 4ec9586ae9466cbf"
+                  uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF - 4ec9586ae9466cbf"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"

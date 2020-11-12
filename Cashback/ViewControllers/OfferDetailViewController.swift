@@ -26,6 +26,7 @@ class OfferDetailViewController: UIViewController {
             switch result {
             case .success(let offer):
                 self.favoriteOffers.append(contentsOf: offer)
+    
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -55,13 +56,10 @@ class OfferDetailViewController: UIViewController {
     @objc func favoritesButtonTapped(sender: UIButton) {
         guard let indexpath = indexPath else { return }
         let cell = detailTableView.cellForRow(at: indexpath) as! ItemCashbackTableViewCell
-        
-
-        
         if cell.isFavorite {
             cell.isFavorite = false
-            PersistenceManager.updateWith(favorite: offerDetail, actionType: .add) { (error) in
-                guard let error = error else {
+            PersistenceManager.updateWith(favorite: offerDetail, actionType: .remove) { (error) in
+                guard let _ = error else {
                     return
                 }
             }
@@ -70,13 +68,11 @@ class OfferDetailViewController: UIViewController {
             cell.favoriteButton.setImage(image, for: .normal)
         } else {
             cell.isFavorite = true
-            
-            PersistenceManager.updateWith(favorite: offerDetail, actionType: .remove) { (error) in
-                guard let error = error else {
+            PersistenceManager.updateWith(favorite: offerDetail, actionType: .add) { (error) in
+                guard let _ = error else {
                     return
                 }
             }
-            
             let image = UIImage(systemName: "checkmark.circle.fill",
                                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
             cell.favoriteButton.setImage(image, for: .normal)
