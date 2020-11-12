@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct Offers: Codable {
-    let offers: [Offer] = []
-}
-
 struct Offer: Codable, Hashable {
     let id: String
     let url: String?
@@ -35,34 +31,10 @@ struct Offer: Codable, Hashable {
             let offersData = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             offers = try decoder.decode([Offer].self, from: offersData)
-            print(offers)
+           // print(offers)
         } catch let error {
             print(error)
         }
-        
-        
-        
         return offers
-        
-//        do {
-//            let data = try Data(contentsOf: url)
-//            let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [[String: Any]]
-//
-//            for i in 0..<json.count {
-//                let name = json[i]["name"] as? String
-//                names.append(name!)
-//            }
-//
-//            let decoder = JSONDecoder()
-//            let offer = try decoder.decode(Offer.self, from: data)
-//
-//            //let name = json[0]["name"] as? String
-//            print(names)
-//        } catch {
-//            print("Error occured while parsing", error)
-//        }
-        
-        
-        
     }
 }

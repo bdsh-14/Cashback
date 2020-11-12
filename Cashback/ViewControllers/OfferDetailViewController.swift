@@ -10,6 +10,7 @@ import UIKit
 class OfferDetailViewController: UIViewController {
     
     var detailTableView: UITableView!
+    var indexPath: IndexPath?
     
     var offerDetail: Offer!
 
@@ -35,6 +36,23 @@ class OfferDetailViewController: UIViewController {
         detailTableView.register(ItemTermsTableViewCell.self, forCellReuseIdentifier: ItemTermsTableViewCell.reuseIdentifier)
 
     }
+    
+    @objc func favoritesButtonTapped(sender: UIButton) {
+        guard let indexpath = indexPath else { return }
+        let cell = detailTableView.cellForRow(at: indexpath) as! ItemCashbackTableViewCell
+        if cell.isFavorite {
+            cell.isFavorite = false
+            let image = UIImage(systemName: "checkmark.circle",
+                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
+            cell.favoriteButton.setImage(image, for: .normal)
+        } else {
+            cell.isFavorite = true
+            let image = UIImage(systemName: "checkmark.circle.fill",
+                                withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
+            cell.favoriteButton.setImage(image, for: .normal)
+        }
+    }
+
 }
 
 extension OfferDetailViewController: UITableViewDataSource {
@@ -51,6 +69,8 @@ extension OfferDetailViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCashbackTableViewCell.reuseIdentifier, for: indexPath) as! ItemCashbackTableViewCell
              cell.set(offer: offerDetail)
+            self.indexPath = indexPath
+            cell.favoriteButton.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
              return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemTermsTableViewCell.reuseIdentifier, for: indexPath) as! ItemTermsTableViewCell
@@ -61,3 +81,4 @@ extension OfferDetailViewController: UITableViewDataSource {
         }
     }
 }
+

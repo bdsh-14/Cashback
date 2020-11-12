@@ -8,9 +8,7 @@
 import UIKit
 
 class FavoritesButton: UIButton {
-    
-   // let placeHolderImage = UIImage(systemName: "checkmark.circle")?.withTintColor(.systemGreen, renderingMode: .alwaysOriginal)
-    
+        
     let placeholderImage = UIImage(systemName: "checkmark.circle",
                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
     
@@ -28,5 +26,7 @@ class FavoritesButton: UIButton {
         setImage(placeholderImage, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    
 
 }

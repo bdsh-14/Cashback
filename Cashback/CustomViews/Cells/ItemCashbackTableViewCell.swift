@@ -15,6 +15,7 @@ class ItemCashbackTableViewCell: UITableViewCell {
     var descLabel = CustomLabel()
     var favoriteButton = FavoritesButton(frame: .zero)
     
+    var isFavorite: Bool = false
     var padding: CGFloat = 20
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,8 +44,6 @@ class ItemCashbackTableViewCell: UITableViewCell {
             cashbackLabel.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: -padding),
             favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             favoriteButton.bottomAnchor.constraint(equalTo: descLabel.topAnchor, constant: 4),
-            //favoriteButton.heightAnchor.constraint(equalToConstant: 70),
-            //favoriteButton.widthAnchor.constraint(equalToConstant: 70),
             
             descLabel.topAnchor.constraint(equalTo: cashbackLabel.bottomAnchor, constant: 4),
             descLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
@@ -52,5 +51,12 @@ class ItemCashbackTableViewCell: UITableViewCell {
             descLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
 
         ])
+        
+        if isFavorite {
+            favoriteButton.setImage(UIImage(systemName: "checkmark.circle",
+                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen), for: .normal)
+        }
     }
+    
+    
 }
