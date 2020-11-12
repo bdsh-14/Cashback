@@ -26,6 +26,7 @@ class OfferDetailViewController: UIViewController {
         detailTableView.tableFooterView = UIView()
         detailTableView.estimatedRowHeight = 120
         detailTableView.separatorStyle = .none
+        detailTableView.allowsSelection = false
         detailTableView.dataSource = self
         detailTableView.rowHeight = UITableView.automaticDimension
         detailTableView.translatesAutoresizingMaskIntoConstraints = false

@@ -13,6 +13,7 @@ class ItemCashbackTableViewCell: UITableViewCell {
     
     var cashbackLabel = CustomLabel()
     var descLabel = CustomLabel()
+    var favoriteButton = FavoritesButton(frame: .zero)
     
     var padding: CGFloat = 20
     
@@ -20,6 +21,7 @@ class ItemCashbackTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(cashbackLabel)
         contentView.addSubview(descLabel)
+        contentView.addSubview(favoriteButton)
         configure()
     }
     
@@ -38,7 +40,11 @@ class ItemCashbackTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             cashbackLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             cashbackLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            cashbackLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            cashbackLabel.trailingAnchor.constraint(equalTo: favoriteButton.leadingAnchor, constant: -padding),
+            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            favoriteButton.bottomAnchor.constraint(equalTo: descLabel.topAnchor, constant: 4),
+            //favoriteButton.heightAnchor.constraint(equalToConstant: 70),
+            //favoriteButton.widthAnchor.constraint(equalToConstant: 70),
             
             descLabel.topAnchor.constraint(equalTo: cashbackLabel.bottomAnchor, constant: 4),
             descLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
