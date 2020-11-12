@@ -51,11 +51,6 @@ class ItemCashbackTableViewCell: UITableViewCell {
             descLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
 
         ])
-        
-        if isFavorite {
-            favoriteButton.setImage(UIImage(systemName: "checkmark.circle",
-                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen), for: .normal)
-        }
     }
     
     

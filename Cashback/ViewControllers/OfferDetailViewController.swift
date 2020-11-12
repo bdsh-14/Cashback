@@ -13,11 +13,26 @@ class OfferDetailViewController: UIViewController {
     var indexPath: IndexPath?
     
     var offerDetail: Offer!
+    var favoriteOffers: [Offer] = []
+    
+    var favOfferIds: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = offerDetail.name
         setupTableView()
+        PersistenceManager.retrieveFavorites { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let offer):
+                self.favoriteOffers.append(contentsOf: offer)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        for i in favoriteOffers {
+            favOfferIds.append(i.id)
+        }
     }
     
     func setupTableView() {
@@ -40,6 +55,9 @@ class OfferDetailViewController: UIViewController {
     @objc func favoritesButtonTapped(sender: UIButton) {
         guard let indexpath = indexPath else { return }
         let cell = detailTableView.cellForRow(at: indexpath) as! ItemCashbackTableViewCell
+        
+
+        
         if cell.isFavorite {
             cell.isFavorite = false
             PersistenceManager.updateWith(favorite: offerDetail, actionType: .add) { (error) in
@@ -80,7 +98,11 @@ extension OfferDetailViewController: UITableViewDataSource {
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCashbackTableViewCell.reuseIdentifier, for: indexPath) as! ItemCashbackTableViewCell
-             cell.set(offer: offerDetail)
+            cell.set(offer: offerDetail)
+            if favOfferIds.contains(offerDetail.id) {
+                cell.favoriteButton.setImage(UIImage(systemName: "checkmark.circle.fill",
+                                                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen), for: .normal)
+            }
             self.indexPath = indexPath
             cell.favoriteButton.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
              return cell

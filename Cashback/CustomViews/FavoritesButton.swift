@@ -26,7 +26,4 @@ class FavoritesButton: UIButton {
         setImage(placeholderImage, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    
-
 }
