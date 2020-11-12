@@ -19,6 +19,7 @@
 		B8C2F6B3255CA05500BC2C9D /* ItemCashbackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F6B2255CA05500BC2C9D /* ItemCashbackTableViewCell.swift */; };
 		B8C2F6B8255CA77C00BC2C9D /* ItemTermsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F6B7255CA77C00BC2C9D /* ItemTermsTableViewCell.swift */; };
 		B8C2F6BB255CB42000BC2C9D /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F6BA255CB42000BC2C9D /* FavoritesButton.swift */; };
+		B8C2F6C1255CC4F300BC2C9D /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C2F6C0255CC4F300BC2C9D /* PersistenceManager.swift */; };
 		B8E4A75E255C7D2B001E705F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A75D255C7D2B001E705F /* CustomLabel.swift */; };
 		B8E4A763255C88B4001E705F /* OfferDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A762255C88B4001E705F /* OfferDetailViewController.swift */; };
 		B8E4A766255C8F95001E705F /* ItemImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E4A765255C8F95001E705F /* ItemImageTableViewCell.swift */; };
@@ -39,6 +40,7 @@
 		B8C2F6B2255CA05500BC2C9D /* ItemCashbackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCashbackTableViewCell.swift; sourceTree = "<group>"; };
 		B8C2F6B7255CA77C00BC2C9D /* ItemTermsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTermsTableViewCell.swift; sourceTree = "<group>"; };
 		B8C2F6BA255CB42000BC2C9D /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
+		B8C2F6C0255CC4F300BC2C9D /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		B8E4A75D255C7D2B001E705F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		B8E4A762255C88B4001E705F /* OfferDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailViewController.swift; sourceTree = "<group>"; };
 		B8E4A765255C8F95001E705F /* ItemImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 		B896869E255B90200073B848 /* Cashback */ = {
 			isa = PBXGroup;
 			children = (
-				B8E4A760255C7F5D001E705F /* NetworkManager */,
+				B8E4A760255C7F5D001E705F /* Managers */,
 				B8B9CC48255C4FD00099EB6B /* CustomViews */,
 				B89686C2255BA8150073B848 /* ViewControllers */,
 				B89686BE255B9A610073B848 /* Models */,
@@ -135,11 +137,12 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		B8E4A760255C7F5D001E705F /* NetworkManager */ = {
+		B8E4A760255C7F5D001E705F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B8C2F6C0255CC4F300BC2C9D /* PersistenceManager.swift */,
 			);
-			path = NetworkManager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +220,7 @@
 				B8C2F6B3255CA05500BC2C9D /* ItemCashbackTableViewCell.swift in Sources */,
 				B89686A4255B90200073B848 /* OffersListViewController.swift in Sources */,
 				B89686A0255B90200073B848 /* AppDelegate.swift in Sources */,
+				B8C2F6C1255CC4F300BC2C9D /* PersistenceManager.swift in Sources */,
 				B8C2F6B8255CA77C00BC2C9D /* ItemTermsTableViewCell.swift in Sources */,
 				B89686A2255B90200073B848 /* SceneDelegate.swift in Sources */,
 				B8E4A763255C88B4001E705F /* OfferDetailViewController.swift in Sources */,

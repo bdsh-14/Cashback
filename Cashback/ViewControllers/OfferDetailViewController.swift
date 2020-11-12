@@ -42,11 +42,23 @@ class OfferDetailViewController: UIViewController {
         let cell = detailTableView.cellForRow(at: indexpath) as! ItemCashbackTableViewCell
         if cell.isFavorite {
             cell.isFavorite = false
+            PersistenceManager.updateWith(favorite: offerDetail, actionType: .add) { (error) in
+                guard let error = error else {
+                    return
+                }
+            }
             let image = UIImage(systemName: "checkmark.circle",
                                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
             cell.favoriteButton.setImage(image, for: .normal)
         } else {
             cell.isFavorite = true
+            
+            PersistenceManager.updateWith(favorite: offerDetail, actionType: .remove) { (error) in
+                guard let error = error else {
+                    return
+                }
+            }
+            
             let image = UIImage(systemName: "checkmark.circle.fill",
                                 withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
             cell.favoriteButton.setImage(image, for: .normal)
