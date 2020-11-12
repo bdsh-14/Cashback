@@ -26,9 +26,9 @@ class OffersCollectionViewCell: UICollectionViewCell {
     }
     
     func set(offer: Offer) {
-        cashbackAmountLabel.text = offer.current_value
+        cashbackAmountLabel.text = offer.currentValue
         nameLabel.text = offer.name
-        productImageView.downloadImage(from: offer.url ?? "")
+        productImageView.downloadImage(from: offer.imageUrl ?? "")
     }
     
     private func configure() {

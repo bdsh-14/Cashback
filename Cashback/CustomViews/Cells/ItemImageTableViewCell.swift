@@ -26,7 +26,7 @@ class ItemImageTableViewCell: UITableViewCell {
     }
     
     func set(offer: Offer) {
-        productImage.downloadImage(from: offer.url ?? "")
+        productImage.downloadImage(from: offer.imageUrl ?? "")
     }
     
     required init?(coder: NSCoder) {

@@ -27,7 +27,7 @@ class ItemCashbackTableViewCell: UITableViewCell {
     }
     
     func set(offer: Offer) {
-        cashbackLabel.text = offer.current_value
+        cashbackLabel.text = offer.currentValue
         descLabel.text = offer.description
     }
     
