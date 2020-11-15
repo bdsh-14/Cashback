@@ -8,6 +8,8 @@
 import UIKit
 
 struct Offer: Codable, Hashable {
+    typealias Element = String
+    
     let id: String
     let imageUrl: String?
     let name: String
@@ -16,7 +18,6 @@ struct Offer: Codable, Hashable {
     // TODO: change name as per Swift convention and use init method to decode it
     let currentValue: String
     let description: String
-//    let isFavorite: Bool?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -36,7 +37,6 @@ struct Offer: Codable, Hashable {
         terms = try values.decode(String.self, forKey: .terms)
         currentValue = try values.decode(String.self, forKey: .currentValue)
         description = try values.decode(String.self, forKey: .description)
-        //isFavorite = try values.decode(Bool.self, forKey: .isFavorite)
     }
     
     //Decode JSON

@@ -19,6 +19,8 @@ class OffersListViewController: UIViewController {
     let offers = Offer.offersFromJson()
     var searchedOffers: [Offer] = []
     var isSearching: Bool = false
+    var favoriteOffers: [Offer] = []
+    var favOfferIds: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +29,18 @@ class OffersListViewController: UIViewController {
         setupDataSource()
         updateData(with: offers)
         setupSearchController()
+        getFavorites()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateData(with: offers)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        getFavorites()
+        offersCollectionView.reloadData()
+        
     }
+    
     
     func setup() {
         view.backgroundColor = .systemBackground
@@ -58,6 +65,21 @@ class OffersListViewController: UIViewController {
         return flowLayout
     }
     
+    func getFavorites() {
+        PersistenceManager.retrieveFavorites { (result) in
+            switch result {
+            case .success(let favorites):
+                self.favoriteOffers = favorites
+            case .failure(let _):
+                break
+            }
+        }
+        
+        for i in favoriteOffers {
+            favOfferIds.append(i.id)
+        }
+    }
+    
     func setupCollectionView() {
         offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
         view.addSubview(offersCollectionView)
@@ -70,8 +92,14 @@ class OffersListViewController: UIViewController {
         dataSource = UICollectionViewDiffableDataSource<Section, Offer>(collectionView: offersCollectionView, cellProvider: { (collectionView, indexPath, offer) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
             cell.layer.borderWidth = 2
+            
             cell.layer.borderColor = UIColor.systemBlue.cgColor
             cell.set(offer: offer)
+            if self.favOfferIds.contains(offer.id) {
+                let image = UIImage(systemName: "checkmark.circle.fill",
+                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
+                cell.favoritesButton.setImage(image, for: .normal)
+            }
             return cell
         })
     }
@@ -111,7 +139,7 @@ extension OffersListViewController: UISearchResultsUpdating, UISearchBarDelegate
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
         isSearching = true
-        searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
+        searchedOffers = favoriteOffers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
         updateData(with: searchedOffers)
         // TODO: if no search results are found, handle it somehow (maybe empty state)
     }

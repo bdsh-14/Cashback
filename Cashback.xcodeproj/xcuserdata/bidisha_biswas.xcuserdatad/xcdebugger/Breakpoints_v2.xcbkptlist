@@ -7,129 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F34041EA-DEBF-4667-945A-C69BE09D1BD8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cashback/ViewControllers/OfferDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "favoritesButtonTapped(sender:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5BA8EE53-E31D-41C5-AB14-A45811B45BEF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cashback/ViewControllers/OfferDetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0"
-            shouldBeEnabled = "Yes"
+            uuid = "DD6F9C98-5E1E-4F7F-8550-6922140130AE"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cashback/Managers/PersistenceManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "updateWith(favorite:actionType:completed:)"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "retrieveFavorites(completed:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0 - 1b8c9fbaebae48f5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static Cashback.PersistenceManager.updateWith(favorite: Cashback.Offer, actionType: Cashback.PersistenceActionType, completed: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Cashback"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/Managers/PersistenceManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "48"
-                  endingLineNumber = "48"
-                  offsetFromSymbolStart = "164">
-               </Location>
-               <Location
-                  uuid = "870EB8DC-26F4-4C17-B669-5B383F5987D0 - ca522c5f1074d323"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Cashback.Offer&gt;, Swift.Error&gt;) -&gt; () in static Cashback.PersistenceManager.updateWith(favorite: Cashback.Offer, actionType: Cashback.PersistenceActionType, completed: (Swift.Optional&lt;Swift.Error&gt;) -&gt; ()) -&gt; ()"
-                  moduleName = "Cashback"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/Managers/PersistenceManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "460">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF"
+            uuid = "FEB0DCE1-3AEF-43B8-9B5A-9D6CC5802A8B"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cashback/ViewControllers/OfferDetailViewController.swift"
+            filePath = "Cashback/ViewControllers/OffersListViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF - 82f99f4769591034"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Cashback.OfferDetailViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Cashback"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/ViewControllers/OfferDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "695">
-               </Location>
-               <Location
-                  uuid = "FB8E148C-E047-4A1D-A4D3-623D8F910DAF - 4ec9586ae9466cbf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Result&lt;Swift.Array&lt;Cashback.Offer&gt;, Swift.Error&gt;) -&gt; () in Cashback.OfferDetailViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "Cashback"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bidisha_biswas/Documents/Misc/Cashback/Cashback/ViewControllers/OfferDetailViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "24"
-                  endingLineNumber = "24"
-                  offsetFromSymbolStart = "217">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36816F0D-1126-4F80-8A5B-15D1E5A36984"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cashback/ViewControllers/OffersListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2FC8EAC-8FDC-4015-AE6B-D5DBDAFCCCE0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cashback/ViewControllers/OffersListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getFavorites()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

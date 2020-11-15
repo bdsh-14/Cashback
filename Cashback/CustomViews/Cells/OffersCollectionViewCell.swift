@@ -13,6 +13,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
     let productImageView = ProductImageView(frame: .zero)
     let cashbackAmountLabel = CustomLabel()
     let nameLabel = CustomLabel()
+    let favoritesButton = FavoritesButton()
     
     let padding: CGFloat = 0
     
@@ -35,6 +36,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
         addSubview(productImageView)
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
+        addSubview(favoritesButton)
         cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: .black)
         nameLabel.configureLabel(fontName: "AvenirNext-Regular", size: 12, fontColor: .gray)
         
