@@ -35,6 +35,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
         productImageView.addSubview(isFavoritedImage)
+        
+        
         isFavoritedImage.isOpaque = true
         
         isFavoritedImage.isHidden = true
@@ -48,7 +50,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            productImageView.heightAnchor.constraint(equalToConstant: 180),
+            productImageView.heightAnchor.constraint(equalToConstant: 200),
             
             cashbackAmountLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 8),
             cashbackAmountLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor),

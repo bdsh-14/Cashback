@@ -26,14 +26,15 @@ class ProductImageView: UIImageView {
         layer.cornerRadius = 5
         contentMode = .scaleAspectFit
         clipsToBounds = true
-        image = placeHolderImage
+        image = placeHolderImage?.withAlignmentRectInsets(UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        
+        backgroundColor = .systemGray6
         translatesAutoresizingMaskIntoConstraints = false
-        layer.borderColor = UIColor.systemRed.cgColor
-        layer.borderWidth = 2
     }
     
     func downloadImage(from urlString: String) {
         let cacheKey = NSString(string: urlString)
+        
         if let image = cache.object(forKey: cacheKey) {
             self.image = image
             return
