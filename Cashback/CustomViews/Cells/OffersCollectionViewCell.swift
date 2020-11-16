@@ -37,7 +37,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
         productImageView.addSubview(isFavoritedImage)
         isFavoritedImage.isOpaque = true
         
-     //   isFavoritedImage.isHidden = true
+        isFavoritedImage.isHidden = true
         isFavoritedImage.image = UIImage(systemName: "checkmark.circle.fill",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
         

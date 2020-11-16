@@ -40,14 +40,10 @@ class TestViewController: UIViewController {
             case .success(let favorites):
                 self.favoriteOffers = favorites
                 self.favOfferIds = self.favoriteOffers.map({ $0.id })
-            case .failure(let _):
+            case .failure(_):
                 break
             }
         }
-//
-//        for i in favoriteOffers {
-//            favOfferIds.append(i.id)
-//        }
     }
     
     func setupCollectionView() {
@@ -85,8 +81,14 @@ extension TestViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
+        let selectedOffer = offers[indexPath.item]
         
-        cell.set(offer: offers[indexPath.item])
+        cell.set(offer: selectedOffer)
+        if favoriteOffers.contains(selectedOffer) {
+            cell.isFavoritedImage.isHidden = false
+        } else {
+            cell.isFavoritedImage.isHidden = true
+        }
         return cell
     }
     
