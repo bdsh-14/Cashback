@@ -11,15 +11,22 @@ class OfferDetailViewController: UIViewController {
     
     var detailTableView: UITableView!
     var indexPath: IndexPath?
-    
     var offerDetail: Offer!
     var favoriteOffers: [Offer] = []
     
-    var favOfferIds: [String] = []
+    let label: CustomLabel = {
+        let lb = CustomLabel()
+        lb.configureLabel(fontName: "AvenirNext-DemiBold", size: 15, fontColor: .black)
+        lb.numberOfLines = 0
+        lb.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40)
+        lb.textAlignment = .center
+        return lb
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = offerDetail.name
+        self.navigationItem.titleView = label
+        label.text = offerDetail.name
         setupTableView()
         PersistenceManager.retrieveFavorites { [weak self] (result) in
             guard let self = self else { return }
@@ -30,9 +37,6 @@ class OfferDetailViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        }
-        for i in favoriteOffers {
-            favOfferIds.append(i.id)
         }
     }
     
@@ -50,7 +54,6 @@ class OfferDetailViewController: UIViewController {
         detailTableView.register(ItemImageTableViewCell.self, forCellReuseIdentifier: ItemImageTableViewCell.reuseIdentifier)
         detailTableView.register(ItemCashbackTableViewCell.self, forCellReuseIdentifier: ItemCashbackTableViewCell.reuseIdentifier)
         detailTableView.register(ItemTermsTableViewCell.self, forCellReuseIdentifier: ItemTermsTableViewCell.reuseIdentifier)
-
     }
     
     @objc func favoritesButtonTapped(sender: UIButton) {
@@ -78,7 +81,6 @@ class OfferDetailViewController: UIViewController {
             cell.favoriteButton.setImage(image, for: .normal)
         }
     }
-
 }
 
 extension OfferDetailViewController: UITableViewDataSource {
@@ -95,7 +97,8 @@ extension OfferDetailViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCashbackTableViewCell.reuseIdentifier, for: indexPath) as! ItemCashbackTableViewCell
             cell.set(offer: offerDetail)
-            if favOfferIds.contains(offerDetail.id) {
+          //  if favOfferIds.contains(offerDetail.id) {
+            if favoriteOffers.contains(offerDetail) {
                 cell.favoriteButton.setImage(UIImage(systemName: "checkmark.circle.fill",
                                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen), for: .normal)
             }

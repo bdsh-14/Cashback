@@ -21,10 +21,9 @@ class CustomLabel: UILabel {
         textAlignment = .left
         textColor = fontColor
         font = UIFont(name: fontName, size: size)
-        adjustsFontSizeToFitWidth = true
+        adjustsFontSizeToFitWidth = false
         minimumScaleFactor = 0.75
-        lineBreakMode = .byWordWrapping
+        lineBreakMode = .byTruncatingTail
         translatesAutoresizingMaskIntoConstraints = false
     }
-
 }

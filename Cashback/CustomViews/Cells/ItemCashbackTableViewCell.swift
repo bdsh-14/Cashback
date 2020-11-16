@@ -14,7 +14,6 @@ class ItemCashbackTableViewCell: UITableViewCell {
     var cashbackLabel = CustomLabel()
     var descLabel = CustomLabel()
     var favoriteButton = FavoritesButton(frame: .zero)
-    
     var isFavorite: Bool = false
     var padding: CGFloat = 20
     
