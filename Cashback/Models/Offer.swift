@@ -14,8 +14,6 @@ struct Offer: Codable, Hashable {
     let imageUrl: String?
     let name: String
     let terms: String
-    
-    // TODO: change name as per Swift convention and use init method to decode it
     let currentValue: String
     let description: String
     
@@ -26,7 +24,6 @@ struct Offer: Codable, Hashable {
         case terms
         case currentValue = "current_value"
         case description
-     //   case isFavorite
     }
     
     init(from decoder: Decoder) throws {
@@ -43,12 +40,8 @@ struct Offer: Codable, Hashable {
     
     static func offersFromJson() -> [Offer] {
         var offers: [Offer] = []
-        
-        //TODO: remove optional
-        
-        let url = Bundle.main.url(forResource: "Offers", withExtension: "json")!
-      
-       
+    
+        guard let url = Bundle.main.url(forResource: "Offers", withExtension: "json") else { return []}
         do {
             let offersData = try Data(contentsOf: url)
             let decoder = JSONDecoder()
