@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createNavigationController() -> UINavigationController {
      //   let vc = OffersListViewController()
-        let vc = TestViewController()
+        let vc = OffersListViewController()
         return UINavigationController(rootViewController: vc)
     }
 

@@ -1,51 +1,56 @@
 //
-//  ViewController.swift
+//  OffersListViewController.swift
 //  Cashback
 //
-//  Created by Bidisha Biswas on 11/10/20.
+//  Created by Bidisha Biswas on 11/15/20.
 //
 
 import UIKit
 
 class OffersListViewController: UIViewController {
     
-    enum Section {
-        case main
-    }
-    
     var offersCollectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Offer>!
-    
     let offers = Offer.offersFromJson()
     var searchedOffers: [Offer] = []
     var isSearching: Bool = false
     var favoriteOffers: [Offer] = []
-    var favOfferIds: [String] = []
+    private let defaultDebounceDelay: Int = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
-        setupCollectionView()
-        setupDataSource()
-        updateData(with: offers)
-        setupSearchController()
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = "Offers"
         getFavorites()
+        setupCollectionView()
+        setupSearchController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateData(with: offers)
         navigationController?.setNavigationBarHidden(false, animated: true)
         getFavorites()
         offersCollectionView.reloadData()
-        
     }
     
+    func getFavorites() {
+        PersistenceManager.retrieveFavorites { [self] (result) in
+            switch result {
+            case .success(let favorites):
+                self.favoriteOffers = favorites
+            case .failure(_):
+                break
+            }
+        }
+    }
     
-    func setup() {
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
-        title = "Offers"
+    func setupCollectionView() {
+        offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
+        view.addSubview(offersCollectionView)
+        offersCollectionView.backgroundColor = .systemBackground
+        offersCollectionView.delegate = self
+        offersCollectionView.dataSource = self
+        offersCollectionView.register(OffersCollectionViewCell.self, forCellWithReuseIdentifier: OffersCollectionViewCell.reuseIdentifier)
     }
     
     func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
@@ -57,66 +62,10 @@ class OffersListViewController: UIViewController {
         
         let flowLayout = UICollectionViewFlowLayout()
         
-        // TODO: fix section inset
-        
-        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 24, right: 8)
-        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 6, bottom: 6, right: 8)
+        flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
         
         return flowLayout
-    }
-    
-    func getFavorites() {
-        PersistenceManager.retrieveFavorites { (result) in
-            switch result {
-            case .success(let favorites):
-                self.favoriteOffers = favorites
-            case .failure(let _):
-                break
-            }
-        }
-        
-        for i in favoriteOffers {
-            favOfferIds.append(i.id)
-        }
-    }
-    
-    func setupCollectionView() {
-        offersCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createTwoColumnFlowLayout())
-        view.addSubview(offersCollectionView)
-        offersCollectionView.backgroundColor = .systemBackground
-        offersCollectionView.delegate = self
-        offersCollectionView.register(OffersCollectionViewCell.self, forCellWithReuseIdentifier: OffersCollectionViewCell.reuseIdentifier)
-    }
-    
-    func setupDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Offer>(collectionView: offersCollectionView, cellProvider: { (collectionView, indexPath, offer) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
-            cell.layer.borderWidth = 2
-            
-            cell.layer.borderColor = UIColor.systemBlue.cgColor
-            if self.favOfferIds.contains(offer.id) {
-        //        cell.isFavorite = true
-            }
-            cell.set(offer: offer)
-            
-//            if self.favOfferIds.contains(offer.id) {
-//                let image = UIImage(systemName: "checkmark.circle.fill",
-//                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
-//                cell.favoritesButton.setImage(image, for: .normal)
-//                self.offersCollectionView.reloadItems(at: [indexPath])
-//            }
-            return cell
-        })
-    }
-    
-    func updateData(with offers: [Offer]) {
-        var snapShot = NSDiffableDataSourceSnapshot<Section, Offer>()
-        snapShot.appendSections([.main])
-        snapShot.appendItems(offers)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapShot, animatingDifferences: true, completion: nil)
-        }
-        isSearching = false
     }
     
     func setupSearchController() {
@@ -129,8 +78,23 @@ class OffersListViewController: UIViewController {
     }
 }
 
-
-extension OffersListViewController: UICollectionViewDelegate {
+extension OffersListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return isSearching ? searchedOffers.count : offers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
+        let selectedOffer = isSearching ? searchedOffers[indexPath.item] : offers[indexPath.item]
+        cell.set(offer: selectedOffer)
+        if favoriteOffers.contains(selectedOffer) {
+            cell.isFavoritedImage.isHidden = false
+        } else {
+            cell.isFavoritedImage.isHidden = true
+        }
+        return cell
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let offersList = isSearching ? searchedOffers : offers
         let selectedOffer = offersList[indexPath.item]
@@ -141,23 +105,16 @@ extension OffersListViewController: UICollectionViewDelegate {
 }
 
 extension OffersListViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    
-    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
         isSearching = true
-        searchedOffers = favoriteOffers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
-        updateData(with: searchedOffers)
-        // TODO: if no search results are found, handle it somehow (maybe empty state)
+        searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
+        self.offersCollectionView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
-        updateData(with: offers)
+        offersCollectionView.reloadData()
     }
-    
-    //TODO: fix cross on search bar
 }
-
-
 

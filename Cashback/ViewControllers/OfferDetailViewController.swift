@@ -28,6 +28,10 @@ class OfferDetailViewController: UIViewController {
         self.navigationItem.titleView = label
         label.text = offerDetail.name
         setupTableView()
+        getFavorites()
+    }
+    
+    func getFavorites() {
         PersistenceManager.retrieveFavorites { [weak self] (result) in
             guard let self = self else { return }
             switch result {
@@ -97,7 +101,6 @@ extension OfferDetailViewController: UITableViewDataSource {
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCashbackTableViewCell.reuseIdentifier, for: indexPath) as! ItemCashbackTableViewCell
             cell.set(offer: offerDetail)
-          //  if favOfferIds.contains(offerDetail.id) {
             if favoriteOffers.contains(offerDetail) {
                 cell.favoriteButton.setImage(UIImage(systemName: "checkmark.circle.fill",
                                                      withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen), for: .normal)
