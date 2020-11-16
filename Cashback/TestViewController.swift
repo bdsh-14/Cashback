@@ -14,7 +14,7 @@ class TestViewController: UIViewController {
     var searchedOffers: [Offer] = []
     var isSearching: Bool = false
     var favoriteOffers: [Offer] = []
-    var favOfferIds: [String] = []
+    private let defaultDebounceDelay: Int = 50
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class TestViewController: UIViewController {
         title = "Offers"
         getFavorites()
         setupCollectionView()
-
+        setupSearchController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +39,6 @@ class TestViewController: UIViewController {
             switch result {
             case .success(let favorites):
                 self.favoriteOffers = favorites
-                self.favOfferIds = self.favoriteOffers.map({ $0.id })
             case .failure(_):
                 break
             }
@@ -72,16 +71,25 @@ class TestViewController: UIViewController {
         return flowLayout
     }
     
+    func setupSearchController() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search items"
+        searchController.obscuresBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+    }
+    
 }
 
 extension TestViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return offers.count
+        return isSearching ? searchedOffers.count : offers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OffersCollectionViewCell.reuseIdentifier, for: indexPath) as! OffersCollectionViewCell
-        let selectedOffer = offers[indexPath.item]
+        let selectedOffer = isSearching ? searchedOffers[indexPath.item] : offers[indexPath.item]
         
         cell.set(offer: selectedOffer)
         if favoriteOffers.contains(selectedOffer) {
@@ -100,3 +108,20 @@ extension TestViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+extension TestViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
+        isSearching = true
+        searchedOffers = offers.filter({ $0.name.lowercased().contains(searchText.lowercased()) })
+        self.offersCollectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        offersCollectionView.reloadData()
+    }
+    
+    //TODO: fix cross on search bar
+}
+

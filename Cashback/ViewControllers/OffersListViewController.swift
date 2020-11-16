@@ -141,6 +141,8 @@ extension OffersListViewController: UICollectionViewDelegate {
 }
 
 extension OffersListViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else { return }
         isSearching = true
