@@ -11,18 +11,23 @@ class ItemImageTableViewCell: UITableViewCell {
     
     static let reuseIdentifier = "offer_detail_cell"
 
-    var productImage = ProductImageView(frame: .zero)
+    var productImageView = ProductImageView(frame: .zero)
     
     var padding: CGFloat = 8
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(productImage)
+        contentView.addSubview(productImageView)
         configure()
     }
     
     func set(offer: Offer) {
-        productImage.downloadImage(from: offer.imageUrl ?? "")
+        NetworkManager.shared.downloadImage(from: offer.imageUrl ?? "") { [weak self] (image) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.productImageView.image = image
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -31,10 +36,10 @@ class ItemImageTableViewCell: UITableViewCell {
 
     private func configure() {
         NSLayoutConstraint.activate([
-            productImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            productImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            productImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
-            productImage.heightAnchor.constraint(equalToConstant: 200)
+            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+            productImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            productImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+            productImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 

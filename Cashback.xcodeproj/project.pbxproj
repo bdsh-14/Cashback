@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B840FE53256329C5002B8218 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840FE52256329C5002B8218 /* UIColor+Ext.swift */; };
+		B840FE5925632F55002B8218 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840FE5825632F55002B8218 /* NetworkManager.swift */; };
 		B89686A0255B90200073B848 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B896869F255B90200073B848 /* AppDelegate.swift */; };
 		B89686A2255B90200073B848 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89686A1255B90200073B848 /* SceneDelegate.swift */; };
 		B89686A9255B90210073B848 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B89686A8255B90210073B848 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		B840FE52256329C5002B8218 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		B840FE5825632F55002B8218 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B896869C255B90200073B848 /* Cashback.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cashback.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B896869F255B90200073B848 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B89686A1255B90200073B848 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B840FE5D25633724002B8218 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B840FE52256329C5002B8218 /* UIColor+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B8968693255B90200073B848 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 		B896869E255B90200073B848 /* Cashback */ = {
 			isa = PBXGroup;
 			children = (
+				B840FE5D25633724002B8218 /* Extensions */,
 				B8E4A760255C7F5D001E705F /* Managers */,
 				B8B9CC48255C4FD00099EB6B /* CustomViews */,
 				B89686C2255BA8150073B848 /* ViewControllers */,
@@ -111,7 +122,6 @@
 				B89686A8255B90210073B848 /* Assets.xcassets */,
 				B89686AA255B90210073B848 /* LaunchScreen.storyboard */,
 				B89686AD255B90210073B848 /* Info.plist */,
-				B840FE52256329C5002B8218 /* UIColor+Ext.swift */,
 			);
 			path = Cashback;
 			sourceTree = "<group>";
@@ -167,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				B8C2F6C0255CC4F300BC2C9D /* PersistenceManager.swift */,
+				B840FE5825632F55002B8218 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -292,6 +303,7 @@
 				B8E4A766255C8F95001E705F /* ItemImageTableViewCell.swift in Sources */,
 				B8B9CC4A255C4FF10099EB6B /* ProductImageView.swift in Sources */,
 				B840FE53256329C5002B8218 /* UIColor+Ext.swift in Sources */,
+				B840FE5925632F55002B8218 /* NetworkManager.swift in Sources */,
 				B8C2F6BB255CB42000BC2C9D /* FavoritesButton.swift in Sources */,
 				B8B9CC46255C4D090099EB6B /* OffersCollectionViewCell.swift in Sources */,
 			);

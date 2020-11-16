@@ -27,18 +27,23 @@ class OffersCollectionViewCell: UICollectionViewCell {
     func set(offer: Offer) {
         cashbackAmountLabel.text = offer.currentValue
         nameLabel.text = offer.name
-        productImageView.downloadImage(from: offer.imageUrl ?? "")
+        NetworkManager.shared.downloadImage(from: offer.imageUrl ?? "") { [weak self] (image) in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.productImageView.image = image
+            }
+        }
     }
     
     private func configure() {
         addSubview(productImageView)
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
+        productImageView.image?.withAlignmentRectInsets(UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
+       
+        // this image is added if an item has been selected as a favorite
         productImageView.addSubview(isFavoritedImage)
-        
-        
         isFavoritedImage.isOpaque = true
-        
         isFavoritedImage.isHidden = true
         isFavoritedImage.image = UIImage(systemName: "checkmark.circle.fill",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
@@ -59,7 +64,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
             
             nameLabel.topAnchor.constraint(equalTo: cashbackAmountLabel.bottomAnchor, constant: 3),
             nameLabel.leadingAnchor.constraint(equalTo: cashbackAmountLabel.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
+            nameLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 15),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
             

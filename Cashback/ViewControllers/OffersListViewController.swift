@@ -10,7 +10,7 @@ import UIKit
 class OffersListViewController: UIViewController {
     
     var offersCollectionView: UICollectionView!
-    let offers = Offer.offersFromJson()
+    let offers = NetworkManager.shared.offersFromJson()
     var searchedOffers: [Offer] = []
     var isSearching: Bool = false
     var favoriteOffers: [Offer] = []
@@ -55,14 +55,14 @@ class OffersListViewController: UIViewController {
     
     func createTwoColumnFlowLayout() -> UICollectionViewFlowLayout {
         let width = view.bounds.width
-        let padding: CGFloat = 12 //padding on left and right edges
+        let padding: CGFloat = 12
         let minimumSpacing: CGFloat = 8
         let availableWidth = width - (padding * 2) - minimumSpacing
         let itemWidth = availableWidth/2
         
         let flowLayout = UICollectionViewFlowLayout()
         
-        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 6, bottom: 6, right: 8)
+        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: padding, bottom: 24, right: 8)
         flowLayout.itemSize = CGSize(width: itemWidth, height: itemWidth + 40)
         
         return flowLayout

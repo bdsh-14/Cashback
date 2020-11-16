@@ -35,19 +35,4 @@ struct Offer: Codable, Hashable {
         currentValue = try values.decode(String.self, forKey: .currentValue)
         description = try values.decode(String.self, forKey: .description)
     }
-    
-    //Decode JSON
-    
-    static func offersFromJson() -> [Offer] {
-        var offers: [Offer] = []
-        guard let url = Bundle.main.url(forResource: "Offers", withExtension: "json") else { return []}
-        do {
-            let offersData = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            offers = try decoder.decode([Offer].self, from: offersData)
-        } catch let error {
-            print(error)
-        }
-        return offers
-    }
 }
