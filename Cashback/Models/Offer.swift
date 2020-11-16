@@ -40,7 +40,6 @@ struct Offer: Codable, Hashable {
     
     static func offersFromJson() -> [Offer] {
         var offers: [Offer] = []
-    
         guard let url = Bundle.main.url(forResource: "Offers", withExtension: "json") else { return []}
         do {
             let offersData = try Data(contentsOf: url)
