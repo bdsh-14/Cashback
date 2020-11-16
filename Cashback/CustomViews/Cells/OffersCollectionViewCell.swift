@@ -34,8 +34,11 @@ class OffersCollectionViewCell: UICollectionViewCell {
         addSubview(productImageView)
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
-        addSubview(isFavoritedImage)
-        isFavoritedImage.image = UIImage(systemName: "checkmark.circle",
+        productImageView.addSubview(isFavoritedImage)
+        isFavoritedImage.isOpaque = true
+        
+     //   isFavoritedImage.isHidden = true
+        isFavoritedImage.image = UIImage(systemName: "checkmark.circle.fill",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
         
         cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: .black)
@@ -56,14 +59,11 @@ class OffersCollectionViewCell: UICollectionViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: cashbackAmountLabel.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
             nameLabel.heightAnchor.constraint(equalToConstant: 15),
-            //nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
             
-            isFavoritedImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            isFavoritedImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            isFavoritedImage.heightAnchor.constraint(equalToConstant: 24),
-            isFavoritedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            isFavoritedImage.topAnchor.constraint(equalTo: productImageView.topAnchor),
+            isFavoritedImage.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor)
             
         ])
-        
     }
 }
