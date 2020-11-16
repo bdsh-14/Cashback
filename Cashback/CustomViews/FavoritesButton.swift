@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritesButton: UIButton {
         
-    let placeholderImage = UIImage(systemName: "checkmark.circle",
+    var placeholderImage = UIImage(systemName: "checkmark.circle",
                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
     
     override init(frame: CGRect) {
@@ -25,5 +25,6 @@ class FavoritesButton: UIButton {
         clipsToBounds = true
         setImage(placeholderImage, for: .normal)
         translatesAutoresizingMaskIntoConstraints = false
+       
     }
 }

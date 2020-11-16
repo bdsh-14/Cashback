@@ -13,9 +13,7 @@ class OffersCollectionViewCell: UICollectionViewCell {
     let productImageView = ProductImageView(frame: .zero)
     let cashbackAmountLabel = CustomLabel()
     let nameLabel = CustomLabel()
-    let favoritesButton = FavoritesButton()
-    
-    let padding: CGFloat = 0
+    let isFavoritedImage = ProductImageView(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,24 +34,36 @@ class OffersCollectionViewCell: UICollectionViewCell {
         addSubview(productImageView)
         addSubview(cashbackAmountLabel)
         addSubview(nameLabel)
-        addSubview(favoritesButton)
+        addSubview(isFavoritedImage)
+        isFavoritedImage.image = UIImage(systemName: "checkmark.circle",
+                                         withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
+        
         cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: .black)
         nameLabel.configureLabel(fontName: "AvenirNext-Regular", size: 12, fontColor: .gray)
         
         NSLayoutConstraint.activate([
-            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-            productImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.6),
+            productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            productImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            productImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            productImageView.heightAnchor.constraint(equalToConstant: 180),
             
-            cashbackAmountLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor, constant: 0),
-            cashbackAmountLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
             cashbackAmountLabel.topAnchor.constraint(equalTo: productImageView.bottomAnchor, constant: 8),
+            cashbackAmountLabel.leadingAnchor.constraint(equalTo: productImageView.leadingAnchor),
+            cashbackAmountLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -8),
+            cashbackAmountLabel.heightAnchor.constraint(equalToConstant: 15),
             
             nameLabel.topAnchor.constraint(equalTo: cashbackAmountLabel.bottomAnchor, constant: 3),
             nameLabel.leadingAnchor.constraint(equalTo: cashbackAmountLabel.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor, constant: -5),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            nameLabel.heightAnchor.constraint(equalToConstant: 15),
+            //nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            
+            isFavoritedImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            isFavoritedImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            isFavoritedImage.heightAnchor.constraint(equalToConstant: 24),
+            isFavoritedImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+            
         ])
+        
     }
 }

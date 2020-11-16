@@ -94,12 +94,17 @@ class OffersListViewController: UIViewController {
             cell.layer.borderWidth = 2
             
             cell.layer.borderColor = UIColor.systemBlue.cgColor
-            cell.set(offer: offer)
             if self.favOfferIds.contains(offer.id) {
-                let image = UIImage(systemName: "checkmark.circle.fill",
-                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
-                cell.favoritesButton.setImage(image, for: .normal)
+        //        cell.isFavorite = true
             }
+            cell.set(offer: offer)
+            
+//            if self.favOfferIds.contains(offer.id) {
+//                let image = UIImage(systemName: "checkmark.circle.fill",
+//                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
+//                cell.favoritesButton.setImage(image, for: .normal)
+//                self.offersCollectionView.reloadItems(at: [indexPath])
+//            }
             return cell
         })
     }

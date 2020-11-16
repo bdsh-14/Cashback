@@ -24,6 +24,7 @@ class ProductImageView: UIImageView {
     
     private func configure() {
         layer.cornerRadius = 5
+        contentMode = .scaleAspectFit
         clipsToBounds = true
         image = placeHolderImage
         translatesAutoresizingMaskIntoConstraints = false
