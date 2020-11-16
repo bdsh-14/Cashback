@@ -70,7 +70,6 @@ class OffersCollectionViewCell: UICollectionViewCell {
             
             isFavoritedImage.topAnchor.constraint(equalTo: productImageView.topAnchor),
             isFavoritedImage.trailingAnchor.constraint(equalTo: productImageView.trailingAnchor)
-            
         ])
     }
 }
