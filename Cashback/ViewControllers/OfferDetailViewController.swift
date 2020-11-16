@@ -22,7 +22,13 @@ class OfferDetailViewController: UIViewController {
         lb.textAlignment = .center
         return lb
     }()
-
+    
+    enum DetailRows: Int {
+        case itemImage = 0
+        case cashback
+        case terms
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = label
@@ -93,12 +99,14 @@ extension OfferDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
+        let detailRows = DetailRows(rawValue: indexPath.row)
+        switch detailRows {
+        case .itemImage:
            let cell = tableView.dequeueReusableCell(withIdentifier: ItemImageTableViewCell.reuseIdentifier, for: indexPath) as! ItemImageTableViewCell
             cell.set(offer: offerDetail)
             return cell
-        case 1:
+            
+        case .cashback:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemCashbackTableViewCell.reuseIdentifier, for: indexPath) as! ItemCashbackTableViewCell
             cell.set(offer: offerDetail)
             if favoriteOffers.contains(offerDetail) {
@@ -108,7 +116,7 @@ extension OfferDetailViewController: UITableViewDataSource {
             self.indexPath = indexPath
             cell.favoriteButton.addTarget(self, action: #selector(favoritesButtonTapped), for: .touchUpInside)
              return cell
-        case 2:
+        case .terms:
             let cell = tableView.dequeueReusableCell(withIdentifier: ItemTermsTableViewCell.reuseIdentifier, for: indexPath) as! ItemTermsTableViewCell
              cell.set(offer: offerDetail)
              return cell
