@@ -33,8 +33,8 @@ class ItemTermsTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        detailsLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 18, fontColor: .black)
-        termsLabel.configureLabel(fontName: "AvenirNext-Regular", size: 15, fontColor: .gray)
+        detailsLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 18, fontColor: UIColor(netHex: 0x4A4A4A))
+        termsLabel.configureLabel(fontName: "AvenirNext-Regular", size: 15, fontColor: UIColor(netHex: 0x4A4A4A))
         termsLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([

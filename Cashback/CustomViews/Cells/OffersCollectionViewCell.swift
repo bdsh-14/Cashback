@@ -43,8 +43,8 @@ class OffersCollectionViewCell: UICollectionViewCell {
         isFavoritedImage.image = UIImage(systemName: "checkmark.circle.fill",
                                          withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .medium))?.withTintColor(.systemGreen)
         
-        cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: .black)
-        nameLabel.configureLabel(fontName: "AvenirNext-Regular", size: 12, fontColor: .gray)
+        cashbackAmountLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 12, fontColor: UIColor(netHex: 0x4A4A4A))
+        nameLabel.configureLabel(fontName: "AvenirNext-Regular", size: 11, fontColor: UIColor(netHex: 0x4A4A4A))
         
         NSLayoutConstraint.activate([
             productImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),

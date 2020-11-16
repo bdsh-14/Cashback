@@ -35,8 +35,8 @@ class ItemCashbackTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        cashbackLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 18, fontColor: .black)
-        descLabel.configureLabel(fontName: "AvenirNext-Regular", size: 15, fontColor: .gray)
+        cashbackLabel.configureLabel(fontName: "AvenirNext-DemiBold", size: 18, fontColor: UIColor(netHex: 0x4A4A4A))
+        descLabel.configureLabel(fontName: "AvenirNext-Regular", size: 15, fontColor: UIColor(netHex: 0x4A4A4A))
         NSLayoutConstraint.activate([
             cashbackLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
             cashbackLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
